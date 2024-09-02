@@ -1,9 +1,8 @@
 import { Client } from "pg";
+import "./dotenv";
 
 export async function getClient() {
-  const client = new Client(
-    "postgresql://payment-db_owner:Zdvh5EMfRSu2@ep-crimson-night-a5l9y5i9.us-east-2.aws.neon.tech/payment-db?sslmode=require"
-  );
+  const client = new Client(`${process.env.POSTGRES_URL}`);
   await client.connect();
   return client;
 }
